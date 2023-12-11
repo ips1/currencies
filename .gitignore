@@ -64,3 +64,8 @@ yarn-error.log
 
 # testing
 /coverage
+
+/ios/Currencies.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+/ios/Currencies.xcworkspace/contents.xcworkspacedata
+/ios/Currencies.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+/ios/Currencies.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
