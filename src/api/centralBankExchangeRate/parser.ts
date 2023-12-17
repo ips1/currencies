@@ -38,7 +38,7 @@ export const parseExchangeBoardText = (text: string): ExchangeBoard => {
   const [dateLine, _, ...currencyLines] = text.split('\n')
 
   if (!dateLine) {
-    throw new Error(`File doesn't contain the required header`)
+    throw new Error('File does not contain the required header')
   }
 
   // Parse the header
@@ -46,7 +46,7 @@ export const parseExchangeBoardText = (text: string): ExchangeBoard => {
   const sequenceNo = Number(sequenceNoPart)
   if (!datePart || !sequenceNo || Number.isNaN(sequenceNo)) {
     throw new Error(
-      `The date line doesn't contain the required parts - datePart: ${datePart}, sequenceNo: ${sequenceNo}`,
+      `The date line does not contain the required parts - datePart: ${datePart}, sequenceNo: ${sequenceNo}`,
     )
   }
 
