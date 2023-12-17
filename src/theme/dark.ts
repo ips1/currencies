@@ -4,7 +4,7 @@ export const darkTheme: DefaultTheme = {
   colors: {
     text: 'white',
     textSecondary: 'gray',
-    inputBackground: 'dimgray',
+    inputBackground: '#242424',
     background: 'black',
   },
 }

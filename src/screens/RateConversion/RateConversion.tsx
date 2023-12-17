@@ -30,6 +30,7 @@ export const RateConversion: FC<RateConversionProps> = ({ route }) => {
             value={localValue}
             onChangeText={handleLocalValueChange}
             currencyCode={route.params.localCurrencyCode}
+            autoFocus={true}
           />
           <Text>{currencyCode}</Text>
         </View>
