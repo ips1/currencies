@@ -10,9 +10,10 @@ export type ForeignCurrency = {
   rate: Rate
 }
 
-// TODO: Incorporate local currency
 export type ExchangeBoard = {
   date: Date
   sequenceNo: number
   currencies: ForeignCurrency[]
 }
+
+export type SupportedLocalCurrencyCode = 'CZK'

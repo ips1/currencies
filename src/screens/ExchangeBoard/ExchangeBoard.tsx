@@ -2,9 +2,14 @@ import { ActivityIndicator, FlatList, Text } from 'react-native'
 import React, { FC } from 'react'
 import { useCurrentExchangeBoard } from '../../hooks/useCurrentExchangeBoard.ts'
 import { ExchangeBoardItem } from './components/ExchangeBoardItem.tsx'
+import { SupportedLocalCurrencyCode } from '../../model/types.ts'
 
-export const ExchangeBoard: FC = () => {
-  const queryResult = useCurrentExchangeBoard()
+type ExchangeBoardProps = {
+  localCurrency: SupportedLocalCurrencyCode
+}
+
+export const ExchangeBoard: FC<ExchangeBoardProps> = ({ localCurrency }) => {
+  const queryResult = useCurrentExchangeBoard(localCurrency)
 
   if (queryResult.isLoading) {
     return <ActivityIndicator />
@@ -22,7 +27,7 @@ export const ExchangeBoard: FC = () => {
       data={queryResult.data.currencies}
       refreshing={queryResult.isRefetching}
       onRefresh={queryResult.refetch}
-      renderItem={(item) => <ExchangeBoardItem foreignCurrency={item.item} localCurrencyCode={'CZK'} />}
+      renderItem={(item) => <ExchangeBoardItem foreignCurrency={item.item} localCurrencyCode={localCurrency} />}
     />
   )
 }
