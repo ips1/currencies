@@ -11,5 +11,5 @@ export const useCurrentExchangeBoard = (localCurrency: SupportedLocalCurrencyCod
     // TODO: Add custom logger
     // TODO: Tweak the error logging
     onError: (error) =>
-      console.error(`[useCurrentExchangeBoard]: Fetching current exchange board failed:`, JSON.stringify(error)),
+      console.error('[useCurrentExchangeBoard]: Fetching current exchange board failed:', JSON.stringify(error)),
   })

@@ -4,7 +4,7 @@ const DELIMITER = '|'
 const EXPECTED_LINE_PARTS = 5
 const parseSingleCurrencyLine = (line: string): ForeignCurrency => {
   const lineParts = line.split(DELIMITER)
-  if (lineParts.length != EXPECTED_LINE_PARTS) {
+  if (lineParts.length !== EXPECTED_LINE_PARTS) {
     throw new Error(
       `Unexpected number of line parts (${lineParts.length}) for line ${line}, expected ${EXPECTED_LINE_PARTS}`,
     )
