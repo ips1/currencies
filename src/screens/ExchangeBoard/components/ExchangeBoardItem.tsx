@@ -12,7 +12,7 @@ const ItemWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
-  min-height: 50px;
+  min-height: 60px;
 `
 
 const LeadingContainer = styled.View`
@@ -20,25 +20,31 @@ const LeadingContainer = styled.View`
   flex-direction: column;
 `
 
-const StyledText = styled.Text`
-  color: ${(props) => props.theme.colors.foreground};
+const BaseText = styled.Text`
+  color: ${(props) => props.theme.colors.text};
+  font-size: 20px;
+`
+
+const SecondaryText = styled.Text`
+  color: ${(props) => props.theme.colors.textSecondary};
+  font-size: 14px;
 `
 
 export const ExchangeBoardItem: FC<ExchangeBoardItemProps> = ({ foreignCurrency, localCurrencyCode }) => {
   return (
     <ItemWrapper>
       <LeadingContainer>
-        <StyledText>
+        <BaseText>
           {foreignCurrency.rate.amountLocal} {foreignCurrency.currencyCode}
-        </StyledText>
-        <StyledText>
+        </BaseText>
+        <SecondaryText>
           {foreignCurrency.countryName} ({foreignCurrency.currencyName})
-        </StyledText>
+        </SecondaryText>
       </LeadingContainer>
 
-      <StyledText>
+      <BaseText>
         {foreignCurrency.rate.amountForeign} {localCurrencyCode}
-      </StyledText>
+      </BaseText>
     </ItemWrapper>
   )
 }

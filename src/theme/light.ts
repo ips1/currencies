@@ -2,7 +2,8 @@ import { DefaultTheme } from 'styled-components/native'
 
 export const lightTheme: DefaultTheme = {
   colors: {
-    foreground: 'black',
+    text: 'black',
+    textSecondary: 'gray',
     background: 'white',
   },
 }
