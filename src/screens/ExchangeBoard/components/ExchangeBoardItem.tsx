@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { ForeignCurrency } from '../../../model/types.ts'
+import { ForeignCurrency, SupportedLocalCurrencyCode } from '../../../model/types.ts'
 
 export type ExchangeBoardItemProps = {
   foreignCurrency: ForeignCurrency
-  localCurrencyCode: string
+  localCurrencyCode: SupportedLocalCurrencyCode
 }
 
 const ItemWrapper = styled.View`
@@ -35,7 +35,7 @@ export const ExchangeBoardItem: FC<ExchangeBoardItemProps> = ({ foreignCurrency,
     <ItemWrapper>
       <LeadingContainer>
         <BaseText>
-          {foreignCurrency.rate.amountLocal} {foreignCurrency.currencyCode}
+          {foreignCurrency.rate.amountForeign} {foreignCurrency.currencyCode}
         </BaseText>
         <SecondaryText>
           {foreignCurrency.countryName} ({foreignCurrency.currencyName})
@@ -43,7 +43,7 @@ export const ExchangeBoardItem: FC<ExchangeBoardItemProps> = ({ foreignCurrency,
       </LeadingContainer>
 
       <BaseText>
-        {foreignCurrency.rate.amountForeign} {localCurrencyCode}
+        {foreignCurrency.rate.amountLocal} {localCurrencyCode}
       </BaseText>
     </ItemWrapper>
   )

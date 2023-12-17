@@ -10,7 +10,7 @@ const parseSingleCurrencyLine = (line: string): ForeignCurrency => {
     )
   }
 
-  const [countryName, currencyName, amountLocalPart, currencyCode, amountForeignPart] = lineParts
+  const [countryName, currencyName, amountForeignPart, currencyCode, amountLocalPart] = lineParts
 
   const amountLocal = Number(amountLocalPart)
   const amountForeign = Number(amountForeignPart)
