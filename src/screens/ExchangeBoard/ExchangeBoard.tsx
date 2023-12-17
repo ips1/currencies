@@ -1,5 +1,6 @@
 import React, { FC, useCallback } from 'react'
 import { ActivityIndicator, FlatList, Text, TouchableHighlight } from 'react-native'
+import { useTheme } from 'styled-components/native'
 import { useCurrentExchangeBoard } from '../../hooks/useCurrentExchangeBoard.ts'
 import { ForeignCurrency, SupportedLocalCurrencyCode } from '../../model/types.ts'
 import { ExchangeBoardNavigationProps } from '../../navigation/params.ts'
@@ -12,6 +13,7 @@ type ExchangeBoardProps = ExchangeBoardNavigationProps & {
 
 export const ExchangeBoard: FC<ExchangeBoardProps> = ({ localCurrency, navigation }) => {
   const queryResult = useCurrentExchangeBoard(localCurrency)
+  const theme = useTheme()
 
   const navigateToDetail = useCallback(
     (selectedCurrency: ForeignCurrency) => {
@@ -40,7 +42,11 @@ export const ExchangeBoard: FC<ExchangeBoardProps> = ({ localCurrency, navigatio
       refreshing={queryResult.isRefetching}
       onRefresh={queryResult.refetch}
       renderItem={(item) => (
-        <TouchableHighlight key={item.item.currencyCode} onPress={() => navigateToDetail(item.item)}>
+        <TouchableHighlight
+          underlayColor={theme.colors.inputBackground}
+          key={item.item.currencyCode}
+          onPress={() => navigateToDetail(item.item)}
+        >
           <ExchangeBoardItem foreignCurrency={item.item} localCurrencyCode={localCurrency} />
         </TouchableHighlight>
       )}
