@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
+import { BaseText } from '../../../components/BaseText.tsx'
+import { SecondaryText } from '../../../components/SecondaryText.tsx'
 import { ForeignCurrency, SupportedLocalCurrencyCode } from '../../../model/types.ts'
 
 export type ExchangeBoardItemProps = {
@@ -18,16 +20,6 @@ const ItemWrapper = styled.View`
 const LeadingContainer = styled.View`
   display: flex;
   flex-direction: column;
-`
-
-const BaseText = styled.Text`
-  color: ${(props) => props.theme.colors.text};
-  font-size: 20px;
-`
-
-const SecondaryText = styled.Text`
-  color: ${(props) => props.theme.colors.textSecondary};
-  font-size: 14px;
 `
 
 export const ExchangeBoardItem: FC<ExchangeBoardItemProps> = ({ foreignCurrency, localCurrencyCode }) => {

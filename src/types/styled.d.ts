@@ -7,6 +7,7 @@ declare module 'styled-components/native' {
       text: Property.Color
       textSecondary: Property.Color
       background: Property.Color
+      inputBackground: Property.Color
     }
   }
 }
