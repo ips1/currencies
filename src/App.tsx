@@ -5,32 +5,31 @@
  * @format
  */
 
-import React, { FC, useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import React, { FC, useMemo, useState } from 'react'
 import { StatusBar, useColorScheme } from 'react-native'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import styled, { ThemeProvider } from 'styled-components/native'
-import { ExchangeBoard } from './screens/ExchangeBoard/ExchangeBoard.tsx'
+import { ThemeProvider } from 'styled-components/native'
+import { RootNavigator } from './navigation/RootNavigator.tsx'
 import { darkTheme } from './theme/dark.ts'
 import { lightTheme } from './theme/light.ts'
-
-const StyledSafeAreaView = styled.SafeAreaView`
-  background-color: ${(props) => props.theme.colors.background};
-`
+import { getNavigationTheme } from './theme/navigationTheme.ts'
 
 const App: FC = () => {
   const isDarkMode = useColorScheme() === 'dark'
 
   const activeTheme = isDarkMode ? darkTheme : lightTheme
+  const navigationTheme = useMemo(() => getNavigationTheme(activeTheme, isDarkMode), [activeTheme, isDarkMode])
 
   const [queryClient] = useState(() => new QueryClient())
 
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={activeTheme}>
-        <StyledSafeAreaView>
-          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          <ExchangeBoard localCurrency={'CZK'} />
-        </StyledSafeAreaView>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <NavigationContainer theme={navigationTheme}>
+          <RootNavigator />
+        </NavigationContainer>
       </ThemeProvider>
     </QueryClientProvider>
   )
