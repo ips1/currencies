@@ -4,7 +4,7 @@ export const lightTheme: DefaultTheme = {
   colors: {
     text: 'black',
     textSecondary: 'gray',
-    inputBackground: 'darkgrey',
+    inputBackground: 'lightgray',
     background: 'white',
   },
 }
