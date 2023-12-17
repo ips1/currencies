@@ -1,6 +1,6 @@
-import { ForeignCurrency } from '../../../model/types.ts'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
+import { ForeignCurrency } from '../../../model/types.ts'
 
 export type ExchangeBoardItemProps = {
   foreignCurrency: ForeignCurrency

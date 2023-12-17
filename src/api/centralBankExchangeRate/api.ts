@@ -1,7 +1,7 @@
-import { ExchangeBoard, SupportedLocalCurrencyCode } from '../../model/types.ts'
 import axios from 'axios'
-import { parseExchangeBoardText } from './parser.ts'
+import { ExchangeBoard, SupportedLocalCurrencyCode } from '../../model/types.ts'
 import { EndpointForCurrency } from './endpoint.ts'
+import { parseExchangeBoardText } from './parser.ts'
 
 const BASE_URL =
   'https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing'

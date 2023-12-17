@@ -1,5 +1,5 @@
-import 'styled-components/native'
 import { Property } from 'csstype'
+import 'styled-components/native'
 
 declare module 'styled-components/native' {
   export interface DefaultTheme {

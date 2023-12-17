@@ -1,8 +1,8 @@
-import { ActivityIndicator, FlatList, Text } from 'react-native'
 import React, { FC } from 'react'
+import { ActivityIndicator, FlatList, Text } from 'react-native'
 import { useCurrentExchangeBoard } from '../../hooks/useCurrentExchangeBoard.ts'
-import { ExchangeBoardItem } from './components/ExchangeBoardItem.tsx'
 import { SupportedLocalCurrencyCode } from '../../model/types.ts'
+import { ExchangeBoardItem } from './components/ExchangeBoardItem.tsx'
 
 type ExchangeBoardProps = {
   localCurrency: SupportedLocalCurrencyCode

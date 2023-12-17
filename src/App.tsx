@@ -7,11 +7,11 @@
 
 import React, { FC, useState } from 'react'
 import { StatusBar, useColorScheme } from 'react-native'
-import { ExchangeBoard } from './screens/ExchangeBoard/ExchangeBoard.tsx'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import styled, { ThemeProvider } from 'styled-components/native'
-import { lightTheme } from './theme/light.ts'
+import { ExchangeBoard } from './screens/ExchangeBoard/ExchangeBoard.tsx'
 import { darkTheme } from './theme/dark.ts'
+import { lightTheme } from './theme/light.ts'
 
 const StyledSafeAreaView = styled.SafeAreaView`
   background-color: ${(props) => props.theme.colors.background};
