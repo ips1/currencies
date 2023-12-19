@@ -28,6 +28,7 @@ export const RateConversion: FC<RateConversionProps> = ({ route }) => {
       <ConversionContainer>
         <CurrencyInput
           value={localValue}
+          maxLength={16}
           onChangeText={handleLocalValueChange}
           currencyCode={route.params.localCurrencyCode}
           autoFocus={true}

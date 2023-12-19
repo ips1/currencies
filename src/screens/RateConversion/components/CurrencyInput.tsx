@@ -32,13 +32,7 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({ currencyCode, showPlaceh
 
   return (
     <InputContainer>
-      <StyledInput
-        maxLength={22}
-        clearButtonMode="while-editing"
-        keyboardType="numeric"
-        placeholder={placeholder}
-        {...props}
-      />
+      <StyledInput clearButtonMode="while-editing" keyboardType="numeric" placeholder={placeholder} {...props} />
       <CurrencyLabel>{currencyCode}</CurrencyLabel>
     </InputContainer>
   )

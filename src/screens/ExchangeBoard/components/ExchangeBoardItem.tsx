@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 import { BaseText } from '../../../components/BaseText.tsx'
 import { SecondaryText } from '../../../components/SecondaryText.tsx'
 import { ForeignCurrency, SupportedLocalCurrencyCode } from '../../../model/types.ts'
+import { formatNumericValue } from '../../../util/format.ts'
 
 export type ExchangeBoardItemProps = {
   foreignCurrency: ForeignCurrency
@@ -27,7 +28,7 @@ export const ExchangeBoardItem: FC<ExchangeBoardItemProps> = ({ foreignCurrency,
     <ItemWrapper>
       <LeadingContainer>
         <BaseText>
-          {foreignCurrency.rate.amountForeign} {foreignCurrency.currencyCode}
+          {formatNumericValue(foreignCurrency.rate.amountForeign)} {foreignCurrency.currencyCode}
         </BaseText>
         <SecondaryText>
           {foreignCurrency.countryName} ({foreignCurrency.currencyName})
@@ -35,7 +36,7 @@ export const ExchangeBoardItem: FC<ExchangeBoardItemProps> = ({ foreignCurrency,
       </LeadingContainer>
 
       <BaseText>
-        {foreignCurrency.rate.amountLocal} {localCurrencyCode}
+        {formatNumericValue(foreignCurrency.rate.amountLocal)} {localCurrencyCode}
       </BaseText>
     </ItemWrapper>
   )
