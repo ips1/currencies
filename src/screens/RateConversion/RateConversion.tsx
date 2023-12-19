@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { SafeAreaView } from 'react-native'
 import styled from 'styled-components/native'
 import { RateConversionNavigationProps } from '../../navigation/params.ts'
 import { ExchangeBoardItem } from '../ExchangeBoard/components/ExchangeBoardItem.tsx'
@@ -19,7 +20,7 @@ export const RateConversion: FC<RateConversionProps> = ({ route }) => {
   const { localValue, foreignValue, handleLocalValueChange } = useRateConversionController(rate)
 
   return (
-    <>
+    <SafeAreaView>
       <ExchangeBoardItem
         foreignCurrency={route.params.foreignCurrency}
         localCurrencyCode={route.params.localCurrencyCode}
@@ -39,6 +40,6 @@ export const RateConversion: FC<RateConversionProps> = ({ route }) => {
           currencyCode={route.params.foreignCurrency.currencyCode}
         />
       </ConversionContainer>
-    </>
+    </SafeAreaView>
   )
 }
