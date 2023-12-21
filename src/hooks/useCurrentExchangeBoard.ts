@@ -5,11 +5,8 @@ import { QueryKeys } from '../queryKeys.ts'
 
 export const useCurrentExchangeBoard = (sourceCurrency: SupportedSourceCurrencyCode) =>
   useQuery([QueryKeys.CurrentExchangeBoard, sourceCurrency], () => fetchCurrentExchangeBoard(sourceCurrency), {
-    // TODO: Figure out these times
-    staleTime: Infinity,
-    cacheTime: Infinity,
-    // TODO: Add custom logger
-    // TODO: Tweak the error logging
+    staleTime: 60 * 60 * 1000,
+    cacheTime: 120 * 60 * 1000,
     onError: (error) =>
       console.error('[useCurrentExchangeBoard]: Fetching current exchange board failed:', JSON.stringify(error)),
   })
