@@ -10,16 +10,16 @@ const parseSingleCurrencyLine = (line: string): TargetCurrency => {
     )
   }
 
-  const [countryName, currencyName, amountForeignPart, currencyCode, amountLocalPart] = lineParts
+  const [countryName, currencyName, amountTargetPart, currencyCode, amountSourcePart] = lineParts
 
-  const amountLocal = Number(amountLocalPart)
-  const amountForeign = Number(amountForeignPart)
+  const amountSource = Number(amountSourcePart)
+  const amountTarget = Number(amountTargetPart)
 
   if (!countryName || !currencyName || !currencyCode) {
     throw new Error(`Unexpected empty fields in line ${line}`)
   }
 
-  if (Number.isNaN(amountLocal) || Number.isNaN(amountForeign)) {
+  if (Number.isNaN(amountSource) || Number.isNaN(amountTarget)) {
     throw new Error(`Unexpected type the numeric fields in line ${line}`)
   }
 
@@ -28,8 +28,8 @@ const parseSingleCurrencyLine = (line: string): TargetCurrency => {
     currencyName,
     currencyCode,
     rate: {
-      amountSource: amountLocal,
-      amountTarget: amountForeign,
+      amountSource: amountSource,
+      amountTarget: amountTarget,
     },
   }
 }
@@ -50,7 +50,6 @@ export const parseExchangeBoardText = (text: string): ExchangeBoard => {
     )
   }
 
-  // TODO: Tweak the date parsing
   const date = new Date(datePart)
 
   const currencies = currencyLines.filter((line) => line).map((line) => parseSingleCurrencyLine(line))
