@@ -11,7 +11,6 @@ const axiosInstance = axios.create({ baseURL: BASE_URL })
 export const fetchCurrentExchangeBoard = async (
   sourceCurrency: SupportedSourceCurrencyCode,
 ): Promise<ExchangeBoard> => {
-  // TODO: Handle errors
   const { data } = await axiosInstance.get<string>(EndpointForCurrency[sourceCurrency])
   console.log(`[fetchCurrentExchangeBoard]: Successfully fetched the data:\n${data}`)
   return parseExchangeBoardText(data)
