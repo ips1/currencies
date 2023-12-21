@@ -25,7 +25,7 @@ export const useRateConversionController = (rate: Rate) => {
 
   const targetValue = useMemo(() => {
     const numericSourceValue = getNumericValueFromInput(sourceValue)
-    return formatNumericValue((numericSourceValue * rate.amountSource) / rate.amountTarget)
+    return formatNumericValue(numericSourceValue * (rate.amountTarget / rate.amountSource))
   }, [rate.amountSource, rate.amountTarget, sourceValue])
 
   return { sourceValue, targetValue, handleSourceValueChange }
