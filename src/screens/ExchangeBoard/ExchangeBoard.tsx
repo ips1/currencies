@@ -13,9 +13,8 @@ type ExchangeBoardProps = ExchangeBoardNavigationProps & {
   sourceCurrency: SupportedSourceCurrencyCode
 }
 
-const AsOfDateText = styled(SecondaryText)`
+const ListHeader = styled.View`
   padding: 10px;
-  background: ${(props) => props.theme.colors.inputBackground};
 `
 
 const FullScreenWrapper = styled.SafeAreaView`
@@ -57,9 +56,6 @@ export const ExchangeBoard: FC<ExchangeBoardProps> = ({ sourceCurrency, navigati
 
   return (
     <SafeAreaView>
-      <AsOfDateText>
-        Data as of {queryResult.data.date} (#{queryResult.data.sequenceNo} of this year)
-      </AsOfDateText>
       <FlatList
         data={queryResult.data.currencies}
         refreshing={queryResult.isRefetching}
@@ -73,6 +69,13 @@ export const ExchangeBoard: FC<ExchangeBoardProps> = ({ sourceCurrency, navigati
             <ExchangeBoardItem targetCurrency={item.item} sourceCurrencyCode={sourceCurrency} />
           </TouchableHighlight>
         )}
+        ListHeaderComponent={
+          <ListHeader>
+            <SecondaryText>
+              Exchange rates for {sourceCurrency} as of {queryResult.data.date} (#{queryResult.data.sequenceNo})
+            </SecondaryText>
+          </ListHeader>
+        }
       />
     </SafeAreaView>
   )
