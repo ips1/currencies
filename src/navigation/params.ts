@@ -1,10 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { ForeignCurrency, SupportedLocalCurrencyCode } from '../model/types.ts'
+import { SupportedSourceCurrencyCode, TargetCurrency } from '../model/types.ts'
 import { NavigationRoute } from './route.ts'
 
 export type RateConversionRouteParams = {
-  foreignCurrency: ForeignCurrency
-  localCurrencyCode: SupportedLocalCurrencyCode
+  targetCurrency: TargetCurrency
+  sourceCurrencyCode: SupportedSourceCurrencyCode
 }
 
 export type RateConversionNavigationProps = NativeStackScreenProps<

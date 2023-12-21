@@ -1,4 +1,4 @@
-import { SupportedLocalCurrencyCode } from '../../model/types.ts'
+import { SupportedSourceCurrencyCode } from '../../model/types.ts'
 import { OneOf } from '../../types/common.ts'
 
 export const CentralBankExchangeRateApiEndpoint = {
@@ -8,4 +8,4 @@ export type CentralBankExchangeRateApiEndpoint = OneOf<typeof CentralBankExchang
 
 export const EndpointForCurrency = {
   CZK: CentralBankExchangeRateApiEndpoint.Daily,
-} as const satisfies Record<SupportedLocalCurrencyCode, CentralBankExchangeRateApiEndpoint>
+} as const satisfies Record<SupportedSourceCurrencyCode, CentralBankExchangeRateApiEndpoint>

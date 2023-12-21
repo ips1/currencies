@@ -1,8 +1,8 @@
-import { ExchangeBoard, ForeignCurrency } from '../../model/types.ts'
+import { ExchangeBoard, TargetCurrency } from '../../model/types.ts'
 
 const DELIMITER = '|'
 const EXPECTED_LINE_PARTS = 5
-const parseSingleCurrencyLine = (line: string): ForeignCurrency => {
+const parseSingleCurrencyLine = (line: string): TargetCurrency => {
   const lineParts = line.split(DELIMITER)
   if (lineParts.length !== EXPECTED_LINE_PARTS) {
     throw new Error(
@@ -28,8 +28,8 @@ const parseSingleCurrencyLine = (line: string): ForeignCurrency => {
     currencyName,
     currencyCode,
     rate: {
-      amountLocal,
-      amountForeign,
+      amountSource: amountLocal,
+      amountTarget: amountForeign,
     },
   }
 }

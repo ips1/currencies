@@ -1,19 +1,19 @@
 export type Rate = {
-  amountLocal: number
-  amountForeign: number
+  amountSource: number
+  amountTarget: number
 }
 
-export type ForeignCurrency = {
+export type TargetCurrency = {
   countryName: string
   currencyName: string
-  currencyCode: string // TODO: better type the currency
+  currencyCode: string
   rate: Rate
 }
 
 export type ExchangeBoard = {
   date: Date
   sequenceNo: number
-  currencies: ForeignCurrency[]
+  currencies: TargetCurrency[]
 }
 
-export type SupportedLocalCurrencyCode = 'CZK'
+export type SupportedSourceCurrencyCode = 'CZK'

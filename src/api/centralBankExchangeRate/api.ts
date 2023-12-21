@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ExchangeBoard, SupportedLocalCurrencyCode } from '../../model/types.ts'
+import { ExchangeBoard, SupportedSourceCurrencyCode } from '../../model/types.ts'
 import { EndpointForCurrency } from './endpoint.ts'
 import { parseExchangeBoardText } from './parser.ts'
 
@@ -8,10 +8,11 @@ const BASE_URL =
 
 const axiosInstance = axios.create({ baseURL: BASE_URL })
 
-// TODO: Add interface
-export const fetchCurrentExchangeBoard = async (localCurrency: SupportedLocalCurrencyCode): Promise<ExchangeBoard> => {
+export const fetchCurrentExchangeBoard = async (
+  sourceCurrency: SupportedSourceCurrencyCode,
+): Promise<ExchangeBoard> => {
   // TODO: Handle errors
-  const { data } = await axiosInstance.get<string>(EndpointForCurrency[localCurrency])
+  const { data } = await axiosInstance.get<string>(EndpointForCurrency[sourceCurrency])
   console.log(`[fetchCurrentExchangeBoard]: Successfully fetched the data:\n${data}`)
   return parseExchangeBoardText(data)
 }

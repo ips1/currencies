@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query'
 import { fetchCurrentExchangeBoard } from '../api/centralBankExchangeRate/api.ts'
-import { SupportedLocalCurrencyCode } from '../model/types.ts'
+import { SupportedSourceCurrencyCode } from '../model/types.ts'
 import { QueryKeys } from '../queryKeys.ts'
 
-export const useCurrentExchangeBoard = (localCurrency: SupportedLocalCurrencyCode) =>
-  useQuery([QueryKeys.CurrentExchangeBoard, localCurrency], () => fetchCurrentExchangeBoard(localCurrency), {
+export const useCurrentExchangeBoard = (sourceCurrency: SupportedSourceCurrencyCode) =>
+  useQuery([QueryKeys.CurrentExchangeBoard, sourceCurrency], () => fetchCurrentExchangeBoard(sourceCurrency), {
     // TODO: Figure out these times
     staleTime: Infinity,
     cacheTime: Infinity,

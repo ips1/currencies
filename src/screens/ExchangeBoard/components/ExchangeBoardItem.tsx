@@ -2,12 +2,12 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { BaseText } from '../../../components/BaseText.tsx'
 import { SecondaryText } from '../../../components/SecondaryText.tsx'
-import { ForeignCurrency, SupportedLocalCurrencyCode } from '../../../model/types.ts'
+import { SupportedSourceCurrencyCode, TargetCurrency } from '../../../model/types.ts'
 import { formatNumericValue } from '../../../util/format.ts'
 
 export type ExchangeBoardItemProps = {
-  foreignCurrency: ForeignCurrency
-  localCurrencyCode: SupportedLocalCurrencyCode
+  targetCurrency: TargetCurrency
+  sourceCurrencyCode: SupportedSourceCurrencyCode
 }
 
 const ItemWrapper = styled.View`
@@ -23,20 +23,20 @@ const LeadingContainer = styled.View`
   flex-direction: column;
 `
 
-export const ExchangeBoardItem: FC<ExchangeBoardItemProps> = ({ foreignCurrency, localCurrencyCode }) => {
+export const ExchangeBoardItem: FC<ExchangeBoardItemProps> = ({ targetCurrency, sourceCurrencyCode }) => {
   return (
     <ItemWrapper>
       <LeadingContainer>
         <BaseText>
-          {formatNumericValue(foreignCurrency.rate.amountForeign)} {foreignCurrency.currencyCode}
+          {formatNumericValue(targetCurrency.rate.amountTarget)} {targetCurrency.currencyCode}
         </BaseText>
         <SecondaryText>
-          {foreignCurrency.countryName} ({foreignCurrency.currencyName})
+          {targetCurrency.countryName} ({targetCurrency.currencyName})
         </SecondaryText>
       </LeadingContainer>
 
       <BaseText>
-        {formatNumericValue(foreignCurrency.rate.amountLocal)} {localCurrencyCode}
+        {formatNumericValue(targetCurrency.rate.amountSource)} {sourceCurrencyCode}
       </BaseText>
     </ItemWrapper>
   )

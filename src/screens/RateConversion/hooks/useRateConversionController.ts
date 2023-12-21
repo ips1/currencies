@@ -10,21 +10,21 @@ const sanitizeText = (text: string): string => {
 const getNumericValueFromInput = (text: string): number => Number(sanitizeText(text))
 
 export const useRateConversionController = (rate: Rate) => {
-  const [localValue, setLocalValue] = useState('')
-  const [foreignValue, setForeignValue] = useState('')
+  const [sourceValue, setSourceValue] = useState('')
+  const [targetValue, setTargetValue] = useState('')
 
-  const handleLocalValueChange = (newLocalValue: string) => {
-    const numericLocalValue = getNumericValueFromInput(newLocalValue)
+  const handleSourceValueChange = (newSourceValue: string) => {
+    const numericSourceValue = getNumericValueFromInput(newSourceValue)
 
-    if (Number.isNaN(numericLocalValue)) {
+    if (Number.isNaN(numericSourceValue) || numericSourceValue < 0) {
       return
     }
 
-    setLocalValue(newLocalValue)
+    setSourceValue(newSourceValue)
 
-    const newForeignValue = formatNumericValue((numericLocalValue * rate.amountLocal) / rate.amountForeign)
-    setForeignValue(newForeignValue)
+    const newForeignValue = formatNumericValue((numericSourceValue * rate.amountSource) / rate.amountTarget)
+    setTargetValue(newForeignValue)
   }
 
-  return { localValue, foreignValue, handleLocalValueChange }
+  return { sourceValue, targetValue, handleSourceValueChange }
 }

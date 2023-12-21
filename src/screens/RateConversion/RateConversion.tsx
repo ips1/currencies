@@ -14,31 +14,31 @@ const ConversionContainer = styled.View`
 `
 
 export const RateConversion: FC<RateConversionProps> = ({ route }) => {
-  const { rate } = route.params.foreignCurrency
+  const { rate } = route.params.targetCurrency
 
   // TODO: Handle input error
-  const { localValue, foreignValue, handleLocalValueChange } = useRateConversionController(rate)
+  const { sourceValue, targetValue, handleSourceValueChange } = useRateConversionController(rate)
 
   return (
     <SafeAreaView>
       <ExchangeBoardItem
-        foreignCurrency={route.params.foreignCurrency}
-        localCurrencyCode={route.params.localCurrencyCode}
+        targetCurrency={route.params.targetCurrency}
+        sourceCurrencyCode={route.params.sourceCurrencyCode}
       />
       <ConversionContainer>
         <CurrencyInput
-          value={localValue}
+          value={sourceValue}
           maxLength={16}
-          onChangeText={handleLocalValueChange}
-          currencyCode={route.params.localCurrencyCode}
+          onChangeText={handleSourceValueChange}
+          currencyCode={route.params.sourceCurrencyCode}
           autoFocus={true}
         />
         <CurrencyInput
-          value={foreignValue}
+          value={targetValue}
           showPlaceholder={false}
           editable={false}
           selectTextOnFocus={false}
-          currencyCode={route.params.foreignCurrency.currencyCode}
+          currencyCode={route.params.targetCurrency.currencyCode}
         />
       </ConversionContainer>
     </SafeAreaView>

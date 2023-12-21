@@ -3,13 +3,13 @@ import { ActivityIndicator, Button, FlatList, SafeAreaView, TouchableHighlight }
 import styled, { useTheme } from 'styled-components/native'
 import { BaseText } from '../../components/BaseText.tsx'
 import { useCurrentExchangeBoard } from '../../hooks/useCurrentExchangeBoard.ts'
-import { ForeignCurrency, SupportedLocalCurrencyCode } from '../../model/types.ts'
+import { SupportedSourceCurrencyCode, TargetCurrency } from '../../model/types.ts'
 import { ExchangeBoardNavigationProps } from '../../navigation/params.ts'
 import { NavigationRoute } from '../../navigation/route.ts'
 import { ExchangeBoardItem } from './components/ExchangeBoardItem.tsx'
 
 type ExchangeBoardProps = ExchangeBoardNavigationProps & {
-  localCurrency: SupportedLocalCurrencyCode
+  sourceCurrency: SupportedSourceCurrencyCode
 }
 
 const FullScreenWrapper = styled.SafeAreaView`
@@ -18,18 +18,18 @@ const FullScreenWrapper = styled.SafeAreaView`
   align-items: center;
 `
 
-export const ExchangeBoard: FC<ExchangeBoardProps> = ({ localCurrency, navigation }) => {
-  const queryResult = useCurrentExchangeBoard(localCurrency)
+export const ExchangeBoard: FC<ExchangeBoardProps> = ({ sourceCurrency, navigation }) => {
+  const queryResult = useCurrentExchangeBoard(sourceCurrency)
   const theme = useTheme()
 
   const navigateToDetail = useCallback(
-    (selectedCurrency: ForeignCurrency) => {
+    (selectedCurrency: TargetCurrency) => {
       navigation.navigate(NavigationRoute.RateConversion, {
-        foreignCurrency: selectedCurrency,
-        localCurrencyCode: localCurrency,
+        targetCurrency: selectedCurrency,
+        sourceCurrencyCode: sourceCurrency,
       })
     },
-    [localCurrency, navigation],
+    [sourceCurrency, navigation],
   )
 
   if (queryResult.isLoading) {
@@ -41,8 +41,6 @@ export const ExchangeBoard: FC<ExchangeBoardProps> = ({ localCurrency, navigatio
   }
 
   if (!queryResult.data) {
-    // TODO: Figure out & make error nicer
-    // TODO: Retry initialization?
     return (
       <FullScreenWrapper>
         <BaseText>Unable to retrieve the rates data</BaseText>
@@ -63,7 +61,7 @@ export const ExchangeBoard: FC<ExchangeBoardProps> = ({ localCurrency, navigatio
             key={item.item.currencyCode}
             onPress={() => navigateToDetail(item.item)}
           >
-            <ExchangeBoardItem foreignCurrency={item.item} localCurrencyCode={localCurrency} />
+            <ExchangeBoardItem targetCurrency={item.item} sourceCurrencyCode={sourceCurrency} />
           </TouchableHighlight>
         )}
       />

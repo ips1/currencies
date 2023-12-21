@@ -13,14 +13,15 @@ export const RootNavigator: FC = () => (
       name={NavigationRoute.ExchangeBoard}
       options={{
         title: 'Currencies',
+        headerLargeTitle: true,
       }}
     >
-      {(props) => <ExchangeBoard {...props} localCurrency="CZK" />}
+      {(props) => <ExchangeBoard {...props} sourceCurrency="CZK" />}
     </RootStack.Screen>
     <RootStack.Screen
       name={NavigationRoute.RateConversion}
       options={({ route }) => ({
-        title: `${route.params.localCurrencyCode} to ${route.params.foreignCurrency.currencyCode}`,
+        title: `${route.params.sourceCurrencyCode} to ${route.params.targetCurrency.currencyCode}`,
       })}
       component={RateConversion}
     />
