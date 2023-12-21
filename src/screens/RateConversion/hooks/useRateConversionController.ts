@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Rate } from '../../../model/types.ts'
 import { formatNumericValue } from '../../../util/format.ts'
 
@@ -9,22 +9,24 @@ const sanitizeText = (text: string): string => {
 
 const getNumericValueFromInput = (text: string): number => Number(sanitizeText(text))
 
+const isValidCurrencyAmount = (text: string): boolean => {
+  const numericValue = getNumericValueFromInput(text)
+  return !Number.isNaN(numericValue) && numericValue >= 0
+}
+
 export const useRateConversionController = (rate: Rate) => {
   const [sourceValue, setSourceValue] = useState('')
-  const [targetValue, setTargetValue] = useState('')
 
   const handleSourceValueChange = (newSourceValue: string) => {
-    const numericSourceValue = getNumericValueFromInput(newSourceValue)
-
-    if (Number.isNaN(numericSourceValue) || numericSourceValue < 0) {
-      return
+    if (isValidCurrencyAmount(newSourceValue)) {
+      setSourceValue(newSourceValue)
     }
-
-    setSourceValue(newSourceValue)
-
-    const newForeignValue = formatNumericValue((numericSourceValue * rate.amountSource) / rate.amountTarget)
-    setTargetValue(newForeignValue)
   }
+  2
+  const targetValue = useMemo(() => {
+    const numericSourceValue = getNumericValueFromInput(sourceValue)
+    return formatNumericValue((numericSourceValue * rate.amountSource) / rate.amountTarget)
+  }, [rate.amountSource, rate.amountTarget, sourceValue])
 
   return { sourceValue, targetValue, handleSourceValueChange }
 }
