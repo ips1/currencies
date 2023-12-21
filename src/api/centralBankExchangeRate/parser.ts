@@ -42,15 +42,11 @@ export const parseExchangeBoardText = (text: string): ExchangeBoard => {
   }
 
   // Parse the header
-  const [datePart, sequenceNoPart] = dateLine.split(' #')
+  const [date, sequenceNoPart] = dateLine.split(' #')
   const sequenceNo = Number(sequenceNoPart)
-  if (!datePart || !sequenceNo || Number.isNaN(sequenceNo)) {
-    throw new Error(
-      `The date line does not contain the required parts - datePart: ${datePart}, sequenceNo: ${sequenceNo}`,
-    )
+  if (!date || !sequenceNo || Number.isNaN(sequenceNo)) {
+    throw new Error(`The date line does not contain the required parts - datePart: ${date}, sequenceNo: ${sequenceNo}`)
   }
-
-  const date = new Date(datePart)
 
   const currencies = currencyLines.filter((line) => line).map((line) => parseSingleCurrencyLine(line))
 

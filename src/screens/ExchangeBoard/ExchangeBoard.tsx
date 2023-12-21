@@ -2,6 +2,7 @@ import React, { FC, useCallback } from 'react'
 import { ActivityIndicator, Button, FlatList, SafeAreaView, TouchableHighlight } from 'react-native'
 import styled, { useTheme } from 'styled-components/native'
 import { BaseText } from '../../components/BaseText.tsx'
+import { SecondaryText } from '../../components/SecondaryText.tsx'
 import { useCurrentExchangeBoard } from '../../hooks/useCurrentExchangeBoard.ts'
 import { SupportedSourceCurrencyCode, TargetCurrency } from '../../model/types.ts'
 import { ExchangeBoardNavigationProps } from '../../navigation/params.ts'
@@ -11,6 +12,11 @@ import { ExchangeBoardItem } from './components/ExchangeBoardItem.tsx'
 type ExchangeBoardProps = ExchangeBoardNavigationProps & {
   sourceCurrency: SupportedSourceCurrencyCode
 }
+
+const AsOfDateText = styled(SecondaryText)`
+  padding: 10px;
+  background: ${(props) => props.theme.colors.inputBackground};
+`
 
 const FullScreenWrapper = styled.SafeAreaView`
   flex: 1;
@@ -51,6 +57,9 @@ export const ExchangeBoard: FC<ExchangeBoardProps> = ({ sourceCurrency, navigati
 
   return (
     <SafeAreaView>
+      <AsOfDateText>
+        Data as of {queryResult.data.date} (#{queryResult.data.sequenceNo} of this year)
+      </AsOfDateText>
       <FlatList
         data={queryResult.data.currencies}
         refreshing={queryResult.isRefetching}

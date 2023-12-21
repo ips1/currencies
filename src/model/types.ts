@@ -11,7 +11,7 @@ export type TargetCurrency = {
 }
 
 export type ExchangeBoard = {
-  date: Date
+  date: string
   sequenceNo: number
   currencies: TargetCurrency[]
 }
