@@ -36,7 +36,6 @@ export const RateConversion: FC<RateConversionProps> = ({ route }) => {
           value={targetValue}
           showPlaceholder={false}
           editable={false}
-          selectTextOnFocus={false}
           currencyCode={route.params.targetCurrency.currencyCode}
         />
       </ConversionContainer>
