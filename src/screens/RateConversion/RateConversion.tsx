@@ -16,7 +16,6 @@ const ConversionContainer = styled.View`
 export const RateConversion: FC<RateConversionProps> = ({ route }) => {
   const { rate } = route.params.targetCurrency
 
-  // TODO: Handle input error
   const { sourceValue, targetValue, handleSourceValueChange } = useRateConversionController(rate)
 
   return (
