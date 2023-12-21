@@ -2,8 +2,8 @@
  * @format
  */
 
-import 'react-native'
 import React from 'react'
+import 'react-native'
 import App from '../src/App.tsx'
 
 // Note: import explicitly to use the types shipped with jest.
